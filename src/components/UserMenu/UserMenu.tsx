@@ -6,7 +6,6 @@ import { selectUser } from "../../redux/auth/authSelectors";
 export const UserMenu = () => {
   const dispatch = useAppDispatch();
   const userData = useAppSelector(selectUser);
-  console.log(userData);
 
   return (
     <div className="wrapper">
@@ -15,7 +14,7 @@ export const UserMenu = () => {
         type="submit"
         variant="contained"
         className="submit-button"
-        onClick={() => dispatch(logout())}
+        onClick={() => dispatch(logout(userData._id))}
       >
         Logout
       </Button>

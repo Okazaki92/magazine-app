@@ -40,13 +40,16 @@ export const login = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk("auth/logout", async (id, thunkAPI) => {
-  try {
-    await axios.get(`/users/logout/${id}`, { withCredentials: true });
-  } catch (error) {
-    return thunkAPI.rejectWithValue((error as Error).message);
+export const logout = createAsyncThunk(
+  "auth/logout",
+  async (id: string | null, thunkAPI) => {
+    try {
+      await axios.get(`/users/logout/${id}`, { withCredentials: true });
+    } catch (error) {
+      return thunkAPI.rejectWithValue((error as Error).message);
+    }
   }
-});
+);
 
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
