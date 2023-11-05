@@ -3,10 +3,10 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://magazine-app-backend.vercel.app/";
 
-type Credentials = {
+interface Credentials {
   email: string;
   password: string;
-};
+}
 
 export const register = createAsyncThunk(
   "auth/register",
@@ -30,7 +30,7 @@ export const login = createAsyncThunk(
       const response = await axios.post("/users/login", credentials, {
         withCredentials: true,
       });
-      console.log(response);
+      console.log(response.data);
 
       return response.data;
     } catch (error) {
