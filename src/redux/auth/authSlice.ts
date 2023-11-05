@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { login, logout, refreshUser, register } from "./authOperation";
 
 interface User {
+  _id: string | null;
   email: string | null;
 }
 
@@ -12,7 +13,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  user: { email: null },
+  user: { email: null, _id: null },
   isLoggedIn: false,
   isRefreshing: false,
 };
@@ -24,7 +25,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logout.fulfilled, (state) => {
-        state.user = { email: null };
+        state.user = { email: null, _id: null };
         state.isLoggedIn = false;
       })
       .addCase(login.fulfilled, (state, action) => {

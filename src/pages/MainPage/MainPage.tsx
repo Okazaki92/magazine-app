@@ -7,6 +7,7 @@ const MainPage = () => {
     <div>
       <h2>Welcome to the main page</h2>
       <p>{userdate.email}</p>
+      <p>{userdate._id}</p>
     </div>
   );
 };
