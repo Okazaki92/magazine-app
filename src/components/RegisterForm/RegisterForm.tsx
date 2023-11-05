@@ -21,6 +21,7 @@ const RegisterForm = () => {
         password: formData.password,
       })
     );
+    console.log(formData.email, formData.password);
     Notify.info("Verification link sent to email. Check your mail.");
   };
 

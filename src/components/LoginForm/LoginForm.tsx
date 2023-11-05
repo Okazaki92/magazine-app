@@ -20,6 +20,7 @@ const LoginForm = () => {
         password: formData.password,
       })
     );
+    console.log(formData.email, formData.password);
   };
 
   return (
