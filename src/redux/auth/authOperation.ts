@@ -32,7 +32,7 @@ export const login = createAsyncThunk(
       });
       console.log(response.data);
 
-      return response.data;
+      return response.data.data;
     } catch (error) {
       alert("Login failed try again.");
       return thunkAPI.rejectWithValue((error as Error).message);
