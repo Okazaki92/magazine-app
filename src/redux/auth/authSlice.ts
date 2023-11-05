@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { login, logout, refreshUser, register } from "./authOperation";
 
 interface User {
@@ -11,13 +11,6 @@ interface AuthState {
   isRefreshing: boolean;
 }
 
-const handleFulfilled = (
-  state: AuthState,
-  action: PayloadAction<{ user: User }>
-) => {
-  state.user = action.payload.user;
-  state.isLoggedIn = true;
-};
 const initialState: AuthState = {
   user: { email: null },
   isLoggedIn: false,
@@ -34,7 +27,15 @@ const authSlice = createSlice({
         state.user = { email: null };
         state.isLoggedIn = false;
       })
-      .addCase(login.fulfilled, handleFulfilled)
+      .addCase(login.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isLoggedIn = true;
+        console.log(state.user, "user");
+        console.log(action.payload.user, "payload");
+      })
 
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
